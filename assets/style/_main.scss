@@ -1,0 +1,252 @@
+@use '_variables' as *;
+
+.player {
+    max-width: 960px;
+    max-height: 540px;
+    border: 6px solid $buttonHoverBackgroundColor;
+    box-shadow: 0 0 25px $boxShadow, 0 3px 3px $boxShadow;
+    position: relative;
+    overflow: hidden;
+    &:hover {
+        .controls {
+            transform: translateY(0);
+            .progress {
+                height: 7px;
+                @media only screen and (min-width: 600px) {
+                    height: 10px;
+                }
+
+                .timer {
+                    visibility: visible;
+                    opacity: 1;
+                    transition: opacity 2s linear;
+                }
+            }
+        }
+    }
+    &:-webkit-full-screen {
+        max-width: none;
+        width: 100%;
+    }
+    &:fullscreen {
+        max-width: none;
+        width: 100%;
+    }
+
+    .player-video {
+        width: 100%;
+        display: block;
+    }
+    @media only screen and (min-width: 600px) {
+        .ply-btn {
+            flex: 1;
+        }
+    }
+
+    .player-btn {
+        background: none;
+        border: 0;
+        color: $svgFillColor;
+        text-align: center;
+        max-width: 33px;
+        padding: 2px 2px;
+        cursor: pointer;
+
+        @media only screen and (min-width: 600px) {
+            max-width: 60px;
+            padding: 5px 8px;
+        }
+        &:hover {
+            border-color: $buttonHoverBorderColor;
+            background: $buttonHoverBackgroundColor;
+        }
+        &:focus {
+            border-color: $buttonHoverBorderColor;
+            background: $buttonHoverBackgroundColor;
+        }
+
+        svg {
+            fill: $svgFillColor;
+            fill-opacity: 1;
+        }
+    }
+
+    .skippers {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        max-width: 40px;
+        font-family: $primaryFont;
+        font-size: 10px;
+        @media only screen and (min-width: 600px) {
+            max-width: 66px;
+            font-size: 13px;
+        }
+    }
+
+    .player-slider {
+        width: 47px;
+
+        @media only screen and (min-width: 600px) {
+            width: 10px;
+            height: 30px;
+        }
+    }
+
+    .controls {
+        align-items: center;
+        display: flex;
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        transform: translateY(100%) translateY(-5px);
+        transition: all 0.3s;
+        flex-wrap: wrap;
+        background: $controlsBackgroundColor;
+        opacity: 0.9;
+
+        .progress {
+            position: relative;
+            display: flex;
+            flex: 10;
+            flex-basis: 100%;
+            height: 4px;
+            transition: height 0.3s;
+            background: $progressBackgroundColor;
+
+            .timer {
+                visibility: hidden;
+                opacity: 0;
+                transition: visibility 0s 2s, opacity 2s linear;
+            }
+
+            .progress-bar {
+                width: 50%;
+                background: $buttonHoverBorderColor;
+                flex: 0;
+                flex-basis: 50%;
+            }
+
+            span {
+                position: absolute;
+                background: $controlsBackgroundColor;
+                color: $buttonHoverBorderColor;
+                top: -14px;
+                left: 1px;
+                font-size: 10px;
+
+                @media only screen and (min-width: 600px) {
+                    top: -25px;
+                    left: 1px;
+                    font-size: 15px;
+                }
+            }
+        }
+
+        .sliders {
+            max-width: 181px;
+            display: flex;
+            align-items: center;
+            justify-content: end;
+            margin-left: 18px;
+
+            @media only screen and (min-width: 600px) {
+                max-width: 300px;
+                justify-content: space-between;
+            }
+        }
+
+        input[type='range'] {
+            -webkit-appearance: none;
+            background: transparent;
+            width: 60%;
+            margin: 0 5px;
+            @media only screen and (min-width: 600px) {
+                width: 65%;
+            }
+
+            &:focus {
+                outline: none;
+            }
+            &::-webkit-slider-runnable-track {
+                width: 100%;
+                height: 4px;
+                cursor: pointer;
+                box-shadow: 1px 1px 1px $darkGrey, 0 0 1px $blackish;
+                background: $rangeBackground;
+                opacity: 0.7;
+                border-radius: 10px;
+                border: 0.2px solid $rangeBorder;
+                &:focus {
+                    background: $rangeFocus;
+                }
+                @media only screen and (min-width: 600px) {
+                    height: 8px;
+                }
+            }
+            &::-webkit-slider-thumb {
+                height: 9px;
+                width: 9px;
+                border-radius: 50px;
+                background: $svgFillColor;
+                cursor: pointer;
+                -webkit-appearance: none;
+                margin-top: -3.5px;
+                box-shadow: 0 1px 3px $progressBackgroundColor;
+                &:active {
+                    cursor: grabbing;
+                }
+                @media only screen and (min-width: 600px) {
+                    height: 15px;
+                    width: 15px;
+                }
+            }
+            &::-moz-range-track {
+                width: 100%;
+                height: 8px;
+                cursor: pointer;
+                box-shadow: 1px 1px 1px $darkGrey, 0 0 1px $blackish;
+                background: $svgFillColor;
+                border-radius: 10px;
+                border: 0.2px solid $rangeBorder;
+                &:active {
+                    cursor: grabbing;
+                }
+                @media only screen and (min-width: 600px) {
+                    height: 8px;
+                }
+            }
+            &::-moz-range-thumb {
+                box-shadow: 0 0 3px $darkGrey, 0 0 1px $blackish;
+                height: 15px;
+                width: 15px;
+                border-radius: 50px;
+                background: $svgFillColor;
+                cursor: pointer;
+                &:active {
+                    cursor: grabbing;
+                }
+            }
+        }
+
+        .outputs {
+            font-family: $primaryFont;
+            width: 40%;
+            color: $svgFillColor;
+            font-size: 9px;
+
+            @media only screen and (min-width: 600px) {
+                width: 35%;
+                font-size: 13px;
+                padding-right: 10px;
+            }
+        }
+    }
+
+    .controls > * {
+        display: flex;
+        @media only screen and (min-width: 600px) {
+            flex: 1;
+        }
+    }
+}

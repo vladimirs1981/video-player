@@ -1,0 +1,23 @@
+$primaryFont: 'Roboto Mono', monospace;
+
+$backgroundColor: #000046;
+$backgroundLinear: linear-gradient(
+    to right top,
+    #051937,
+    #004d7a,
+    #008793,
+    #00bf72,
+    #a8eb12
+);
+
+$boxShadow: rgba(0, 0, 0, 0.1);
+$buttonHoverBorderColor: #ffec41;
+$buttonHoverBackgroundColor: rgba(255, 255, 255, 0.2);
+$svgFillColor: #95d85e;
+$controlsBackgroundColor: #2f4858;
+$progressBackgroundColor: rgba(0, 0, 0, 0.7);
+$darkGrey: rgba(0, 0, 0, 0);
+$blackish: rgba(13, 13, 13, 0);
+$rangeBackground: #006d7e;
+$rangeBorder: rgba(1, 1, 1, 0);
+$rangeFocus: rgba(255, 255, 255, 0.8);
