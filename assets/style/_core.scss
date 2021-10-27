@@ -1,0 +1,22 @@
+@use '_variables' as *;
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: block;
+    height: 100vh;
+    background: $backgroundColor;
+    background: $backgroundLinear;
+    align-items: center;
+    font-family: $primaryFont;
+
+    @media only screen and (min-width: 600px) {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}

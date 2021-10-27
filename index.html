@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Video Player</title>
+        <link
+            href="/assets/images/favicon.ico"
+            rel="icon"
+            type="image/x-icon"
+        />
+        <link rel="stylesheet" href="/assets/style/style.css" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap"
+            rel="stylesheet"
+        />
+        <script
+            defer
+            src="/index.js
+        "
+        ></script>
+    </head>
+    <body onload="updateRangeOutputsOnLoad()">
+        <main class="player">
+            <video class="player-video">
+                <source
+                    src="/assets/video/Big_Buck_Bunny_first_23_seconds_1080p.ogv.1080p.webm"
+                    type="video/webm"
+                />
+            </video>
+            <section class="controls">
+                <div class="progress">
+                    <div class="progress-bar"></div>
+                    <span class="timer">00:00/00:00</span>
+                </div>
+                <div class="ply-btn">
+                    <button class="player-btn toggle-play" title="Toggle Play">
+                        <svg
+                            width="24px"
+                            height="24px"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                        >
+                            <path
+                                d="M6 6.741c0-1.544 1.674-2.505 3.008-1.728l9.015 5.26c1.323.771 1.323 2.683 0 3.455l-9.015 5.258C7.674 19.764 6 18.803 6 17.26V6.741zM17.015 12L8 6.741V17.26L17.015 12z"
+                                fill="currentColor"
+                            />
+                        </svg>
+                    </button>
+                    <button class="player-btn stop" title="Stop">
+                        <svg
+                            width="24px"
+                            height="24px"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                        >
+                            <path
+                                d="M5 7a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V7zm12 0H7v10h10V7z"
+                                fill="currentColor"
+                            />
+                        </svg>
+                    </button>
+                </div>
+
+                <div class="sliders">
+                    <button class="player-btn toggle-mute" title="Toggle Mute">
+                        <svg
+                            width="20px"
+                            height="20px"
+                            viewBox="0 0 16 16"
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="currentColor"
+                        >
+                            <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M1.5 4.83h2.79L8.15 1l.85.35v13l-.85.33-3.86-3.85H1.5l-.5-.5v-5l.5-.5zM4.85 10L8 13.14V2.56L4.85 5.68l-.35.15H2v4h2.5l.35.17zM15 7.83a6.97 6.97 0 0 1-1.578 4.428l-.712-.71A5.975 5.975 0 0 0 14 7.83c0-1.4-.48-2.689-1.284-3.71l.712-.71A6.971 6.971 0 0 1 15 7.83zm-2 0a4.978 4.978 0 0 1-1.002 3.004l-.716-.716A3.982 3.982 0 0 0 12 7.83a3.98 3.98 0 0 0-.713-2.28l.716-.716c.626.835.997 1.872.997 2.996zm-2 0c0 .574-.16 1.11-.44 1.566l-.739-.738a1.993 1.993 0 0 0 .005-1.647l.739-.739c.276.454.435.988.435 1.558z"
+                            />
+                        </svg>
+                    </button>
+                    <input
+                        id="volume"
+                        type="range"
+                        name="volume"
+                        class="player-slider volume"
+                        min="0"
+                        max="1"
+                        step="0.01"
+                        value="0.5"
+                    />
+                    <output
+                        class="outputs volumeOut"
+                        for="volume"
+                        id="volumeOut"
+                    ></output>
+                    <input
+                        id="playbackRate"
+                        type="range"
+                        name="playbackRate"
+                        class="player-slider playbackRate"
+                        min="0.5"
+                        max="2"
+                        step="0.1"
+                        value="1"
+                    />
+                    <output
+                        class="outputs speedOut"
+                        for="playbackRate"
+                        id="playbackRateOut"
+                    >
+                    </output>
+                </div>
+                <button data-skip="-10" class="player-btn skippers">
+                    <svg
+                        width="24px"
+                        height="24px"
+                        viewBox="0 0 24 24"
+                        version="1.1"
+                        xmlns="http://www.w3.org/2000/svg"
+                        xmlns:xlink="http://www.w3.org/1999/xlink"
+                    >
+                        <title>backward</title>
+                        <desc>Created with sketchtool.</desc>
+                        <g
+                            id="media-player"
+                            stroke="none"
+                            stroke-width="1"
+                            fill="none"
+                            fill-rule="evenodd"
+                        >
+                            <g id="backward" fill="currentColor">
+                                <path
+                                    d="M12,11.99947 C11.9999999,11.8925745 12.0230928,11.7841824 12.0717341,11.684095 C12.1234646,11.577651 12.2002899,11.4899057 12.2934869,11.4308222 L19.1533324,7.08193038 C19.4285884,6.90742807 19.7755846,7.02082217 19.92837,7.33520318 C19.9753487,7.43186966 20,7.54060804 20,7.65116756 L20,16.3489513 C20,16.7085156 19.744791,17 19.4299748,17 C19.3331745,17 19.2379686,16.9718448 19.1533324,16.9181884 L12.2934869,12.5692966 C12.1058623,12.4503494 12.0000001,12.2283402 12,11.99947 L12,16.3489513 C12,16.7085156 11.744791,17 11.4299748,17 C11.3331745,17 11.2379686,16.9718448 11.1533324,16.9181884 L4.2934869,12.5692966 C4.01823084,12.3947943 3.91894872,11.9984761 4.07173409,11.684095 C4.12346458,11.577651 4.20028993,11.4899057 4.2934869,11.4308222 L11.1533324,7.08193038 C11.4285884,6.90742807 11.7755846,7.02082217 11.92837,7.33520318 C11.9753487,7.43186966 12,7.54060804 12,7.65116756 L12,11.9994697 Z"
+                                    id="Shape"
+                                ></path>
+                            </g>
+                        </g>
+                    </svg>
+                    10s
+                </button>
+                <button data-skip="10" class="player-btn skippers">
+                    10s
+                    <svg
+                        width="24px"
+                        height="24px"
+                        viewBox="0 0 24 24"
+                        version="1.1"
+                        xmlns="http://www.w3.org/2000/svg"
+                        xmlns:xlink="http://www.w3.org/1999/xlink"
+                    >
+                        <title>forward</title>
+                        <desc>Created with sketchtool.</desc>
+                        <g
+                            id="media-player"
+                            stroke="none"
+                            stroke-width="1"
+                            fill="none"
+                            fill-rule="evenodd"
+                        >
+                            <g
+                                id="forward"
+                                fill="currentColor"
+                                fill-rule="nonzero"
+                            >
+                                <path
+                                    d="M12,11.9994698 L12,7.65116756 C12,7.54060804 12.0246513,7.43186966 12.07163,7.33520318 C12.2244154,7.02082217 12.5714116,6.90742807 12.8466676,7.08193038 L19.7065131,11.4308222 C19.7997101,11.4899057 19.8765354,11.577651 19.9282659,11.684095 C20.0810513,11.9984761 19.9817692,12.3947943 19.7065131,12.5692966 L12.8466676,16.9181884 C12.7620314,16.9718448 12.6668255,17 12.5700252,17 C12.255209,17 12,16.7085156 12,16.3489513 L12,11.9994701 C11.9999999,12.2283402 11.8941377,12.4503494 11.7065131,12.5692966 L4.84666762,16.9181884 C4.76203135,16.9718448 4.66682555,17 4.57002524,17 C4.25520899,17 4,16.7085156 4,16.3489513 L4,7.65116756 C4,7.54060804 4.02465131,7.43186966 4.07163005,7.33520318 C4.22441541,7.02082217 4.57141155,6.90742807 4.84666762,7.08193038 L11.7065131,11.4308222 C11.7997101,11.4899057 11.8765354,11.577651 11.9282659,11.684095 C11.9769072,11.7841824 12.0000001,11.8925745 12,11.99947 Z"
+                                    id="Shape"
+                                ></path>
+                            </g>
+                        </g>
+                    </svg>
+                </button>
+                <button class="player-btn toggle-fullscreen">
+                    <svg
+                        width="24px"
+                        height="24px"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                    >
+                        <path
+                            d="M5 5h5V3H3v7h2zm5 14H5v-5H3v7h7zm11-5h-2v5h-5v2h7zm-2-4h2V3h-7v2h5z"
+                        />
+                    </svg>
+                </button>
+            </section>
+        </main>
+    </body>
+</html>
